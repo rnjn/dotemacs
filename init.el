@@ -15,8 +15,8 @@
  (ido-mode t)
 
 ;;; rails support
-(add-to-list 'load-path "~/work/dotemacs/rinari")
-(require 'rinari)
+;;;(add-to-list 'load-path "~/work/dotemacs/rinari");
+;;;(require 'rinari)
 
 ;;; cedet 
 (add-to-list 'load-path "~/work/dotemacs/cedet")
@@ -53,7 +53,8 @@
 (require 'color-theme)
 
 ;;; pymacs and rope
-(load-file "~/work/dotemacs/pymacs-init.el")
+(add-to-list 'load-path "~/work/dotemacs/pymacs")
+;;;(load-file "~/work/dotemacs/pymacs-init.el")
 
 ;;; autocomplete
 (add-to-list 'load-path "~/work/dotemacs/auto-complete")
@@ -61,6 +62,8 @@
 (require 'auto-complete-config)
 (global-auto-complete-mode t)
 (setq ac-dwim t)
+
+;;;(load-file "~/work/dotemacs/auto-python.el")
 
 ;;; flymake
 (load-file "~/work/dotemacs/flymake-init.el")
@@ -73,3 +76,9 @@
 (load-file "~/work/dotemacs/linum.el")
 (require 'linum)
 (linum-mode t)
+
+;;;js2 mode
+(load-file "~/work/dotemacs/js2-mode.el")
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+

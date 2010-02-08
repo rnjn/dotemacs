@@ -7,3 +7,5 @@
 (autoload 'pymacs-load "pymacs" nil t)
 (add-to-list 'pymacs-load-path "~/work/dotemacs/pymacs")
 (pymacs-load "ropemacs" "rope-")
+
+
