@@ -53,7 +53,7 @@
 (require 'color-theme)
 
 ;;; pymacs and rope
-;;;(add-to-list 'load-path "~/work/dotemacs/pymacs")
+(add-to-list 'load-path "~/work/dotemacs/pymacs")
 ;;;(load-file "~/work/dotemacs/pymacs-init.el")
 
 ;;; autocomplete
@@ -62,6 +62,8 @@
 (require 'auto-complete-config)
 (global-auto-complete-mode t)
 (setq ac-dwim t)
+
+;;;(load-file "~/work/dotemacs/auto-python.el")
 
 ;;; flymake
 (load-file "~/work/dotemacs/flymake-init.el")
@@ -76,7 +78,6 @@
 (linum-mode t)
 
 ;;;js2 mode
-(load-file "~/work/dotemacs/js2-mode.el")
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 

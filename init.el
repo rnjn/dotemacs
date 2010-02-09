@@ -3,6 +3,7 @@
 (line-number-mode t)
 (setq visible-bell t)
 (global-font-lock-mode t)
+(setq exec-path (append exec-path '("/opt/local/bin")) )
 
 ;;;view config
 (load-file "~/work/dotemacs/view.el")
@@ -54,7 +55,7 @@
 
 ;;; pymacs and rope
 (add-to-list 'load-path "~/work/dotemacs/pymacs")
-;;;(load-file "~/work/dotemacs/pymacs-init.el")
+(load-file "~/work/dotemacs/pymacs-init.el")
 
 ;;; autocomplete
 (add-to-list 'load-path "~/work/dotemacs/auto-complete")
@@ -78,7 +79,8 @@
 (linum-mode t)
 
 ;;;js2 mode
-(load-file "~/work/dotemacs/js2-mode.el")
+(add-to-list 'load-path "~/work/dotemacs/js2")
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
 
