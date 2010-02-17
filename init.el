@@ -4,6 +4,10 @@
 (setq visible-bell t)
 (global-font-lock-mode t)
 (setq exec-path (append exec-path '("/opt/local/bin")) )
+(global-visual-line-mode 1)
+
+;;;css mode
+(load-file "~/work/dotemacs/css-mode.el")
 
 ;;;view config
 (load-file "~/work/dotemacs/view.el")
@@ -46,8 +50,7 @@
 (yas/load-directory "~/work/dotemacs/yasnippets/snippets")
 
 ;;;magit
-(add-to-list 'load-path "~/work/dotemacs/magit")
-(require 'magit)
+(load-file "~/work/dotemacs/magit.el")
 
 ;;; color-theme
 (add-to-list 'load-path "~/work/dotemacs/color-theme")
