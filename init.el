@@ -52,10 +52,6 @@
 ;;;magit
 (load-file "~/work/dotemacs/magit.el")
 
-;;; color-theme
-(add-to-list 'load-path "~/work/dotemacs/color-theme")
-(require 'color-theme)
-
 ;;; pymacs and rope
 (add-to-list 'load-path "~/work/dotemacs/pymacs")
 (load-file "~/work/dotemacs/pymacs-init.el")
@@ -86,4 +82,14 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+;;; transparency
+;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
+(set-frame-parameter (selected-frame) 'alpha '(90 50))
+(add-to-list 'default-frame-alist '(alpha 90 50))
+
+;;; color-theme
+(add-to-list 'load-path "~/work/dotemacs/color-theme")
+(require 'color-theme)
+(color-theme-initialize)
+(load-file "~/work/dotemacs/themes/zen-and-art.el")
 
