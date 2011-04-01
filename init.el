@@ -51,10 +51,13 @@
 
 ;;;magit
 (load-file "~/work/dotemacs/magit.el")
+;on mac
+(add-to-list 'exec-path "/usr/local/git/bin")
+(setq magit-git-executable "/usr/local/git/bin/git")
 
 ;;; pymacs and rope
-(add-to-list 'load-path "~/work/dotemacs/pymacs")
-(load-file "~/work/dotemacs/pymacs-init.el")
+;(add-to-list 'load-path "~/work/dotemacs/pymacs")
+;(load-file "~/work/dotemacs/pymacs-init.el")
 
 ;;; autocomplete
 (add-to-list 'load-path "~/work/dotemacs/auto-complete")
@@ -84,12 +87,43 @@
 
 ;;; transparency
 ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-(set-frame-parameter (selected-frame) 'alpha '(90 50))
-(add-to-list 'default-frame-alist '(alpha 90 50))
+(set-frame-parameter (selected-frame) 'alpha '(99 50))
+(add-to-list 'default-frame-alist '(alpha 99 50))
 
 ;;; color-theme
 (add-to-list 'load-path "~/work/dotemacs/color-theme")
 (require 'color-theme)
 (color-theme-initialize)
-(load-file "~/work/dotemacs/themes/zen-and-art.el")
+;(load-file "~/work/dotemacs/themes/zen-and-art.el")
+(color-theme-clarity)
 
+(add-to-list 'load-path "~/work/dotemacs/muse/lisp")
+(load-file "~/work/dotemacs/muse/lisp/muse.el")
+(require 'muse-mode) 
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/work/dotemacs/elpa/package.el"))
+  (package-initialize))
+
+;;;scheme
+(setq scheme-program-name "/Applications/mit-scheme.app/Contents/Resources/mit-scheme")
+
+;;;f# mode
+(add-to-list 'load-path "~/work/dotemacs/fsharp")
+(load-file "~/work/dotemacs/fsharp/fsharp.el")
+
+;;;backup folder
+(setq
+ backup-by-copying t      ; don't clobber symlinks
+ backup-directory-alist
+ '(("." . "~/.saves"))    ; don't litter my fs tree
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)       ; use versioned backups
