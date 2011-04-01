@@ -1,5 +1,4 @@
-/css-mode.elc
+*.elc
+*.el~
 /.DS_Store
-/css-mode.el~
 
-/magit.el~
