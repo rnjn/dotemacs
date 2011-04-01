@@ -28,3 +28,6 @@
 [submodule "fsharp-mode"]
 	path = fsharp-mode
 	url = https://github.com/emacsmirror/fsharp-mode.git
+[submodule "pymacs"]
+	path = pymacs
+	url = https://github.com/pinard/Pymacs.git
