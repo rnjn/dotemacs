@@ -112,8 +112,8 @@
 (setq scheme-program-name "/Applications/mit-scheme.app/Contents/Resources/mit-scheme")
 
 ;;;f# mode
-(add-to-list 'load-path "~/work/dotemacs/fsharp")
-(load-file "~/work/dotemacs/fsharp/fsharp.el")
+(add-to-list 'load-path "~/work/dotemacs/fsharp-mode")
+(load-file "~/work/dotemacs/fsharp-mode/fsharp.el")
 
 ;;;backup folder
 (setq

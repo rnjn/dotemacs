@@ -25,3 +25,6 @@
 [submodule "cedet"]
 	path = cedet
 	url = https://github.com/emacs-pkg-mirrors/cedet.git
+[submodule "fsharp-mode"]
+	path = fsharp-mode
+	url = https://github.com/emacsmirror/fsharp-mode.git
