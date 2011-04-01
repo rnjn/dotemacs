@@ -31,3 +31,9 @@
 [submodule "pymacs"]
 	path = pymacs
 	url = https://github.com/pinard/Pymacs.git
+[submodule "js2"]
+	path = js2
+	url = https://github.com/irfn/js2-mode.git
+[submodule "swank-clojure"]
+	path = swank-clojure
+	url = https://github.com/technomancy/swank-clojure.git
