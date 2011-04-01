@@ -25,3 +25,6 @@
 [submodule "muse"]
 	path = muse
 	url = https://github.com/alexott/muse.git
+[submodule "cedet"]
+	path = cedet
+	url = https://github.com/emacs-pkg-mirrors/cedet.git
