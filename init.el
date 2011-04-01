@@ -44,10 +44,10 @@
 (require 'clojure-mode)
 
 ;;;yasnippets
-(add-to-list 'load-path "~/work/dotemacs/yasnippets/")
+(add-to-list 'load-path "~/work/dotemacs/yasnippet/")
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory "~/work/dotemacs/yasnippets/snippets")
+(yas/load-directory "~/work/dotemacs/yasnippet/snippets")
 
 ;;;magit
 (load-file "~/work/dotemacs/magit.el")
@@ -97,6 +97,7 @@
 ;(load-file "~/work/dotemacs/themes/zen-and-art.el")
 (color-theme-clarity)
 
+;;;muse
 (add-to-list 'load-path "~/work/dotemacs/muse/lisp")
 (load-file "~/work/dotemacs/muse/lisp/muse.el")
 (require 'muse-mode) 

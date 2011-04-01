@@ -19,3 +19,6 @@
 [submodule "nxhtml"]
 	path = nxhtml
 	url = https://github.com/emacsmirror/nxhtml.git
+[submodule "yasnippet"]
+	path = yasnippet
+	url = https://github.com/emacsmirror/yasnippet.git
