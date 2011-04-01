@@ -1,3 +1,6 @@
 [submodule "rinari"]
 	path = rinari
 	url = https://github.com/eschulte/rinari.git
+[submodule "magit"]
+	path = magit
+	url = https://github.com/philjackson/magit.git

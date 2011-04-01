@@ -20,8 +20,8 @@
  (ido-mode t)
 
 ;;; rails support
-;;;(add-to-list 'load-path "~/work/dotemacs/rinari");
-;;;(require 'rinari)
+(add-to-list 'load-path "~/work/dotemacs/rinari/")
+(require 'rinari)
 
 ;;; cedet 
 (add-to-list 'load-path "~/work/dotemacs/cedet")
