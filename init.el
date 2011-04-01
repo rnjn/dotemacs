@@ -26,11 +26,7 @@
 ;;; cedet 
 (add-to-list 'load-path "~/work/dotemacs/cedet")
 (require 'cedet) 
-;;(require 'semantic)
-;;(load-file "~/work/dotemacs/cedet/common/cedet.el")
-;;(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
-;;(global-srecode-minor-mode 1)   
-(global-ede-mode 1)                      ; Enable the Project management system
+(global-ede-mode 1)
 
 
 ;;;revert buffer
@@ -56,8 +52,8 @@
 (setq magit-git-executable "/usr/local/git/bin/git")
 
 ;;; pymacs and rope
-;(add-to-list 'load-path "~/work/dotemacs/pymacs")
-;(load-file "~/work/dotemacs/pymacs-init.el")
+;;(add-to-list 'load-path "~/work/dotemacs/pymacs")
+;;(load-file "~/work/dotemacs/pymacs-init.el")
 
 ;;; autocomplete
 (add-to-list 'load-path "~/work/dotemacs/auto-complete")
@@ -102,11 +98,7 @@
 (load-file "~/work/dotemacs/muse/lisp/muse.el")
 (require 'muse-mode) 
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
+;;elpa
 (when
     (load
      (expand-file-name "~/work/dotemacs/elpa/package.el"))
