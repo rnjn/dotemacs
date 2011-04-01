@@ -16,3 +16,6 @@
 [submodule "jdee"]
 	path = jdee
 	url = https://github.com/emacsmirror/jdee.git
+[submodule "nxhtml"]
+	path = nxhtml
+	url = https://github.com/emacsmirror/nxhtml.git
