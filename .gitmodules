@@ -13,3 +13,6 @@
 [submodule "ecb"]
 	path = ecb
 	url = https://github.com/emacsmirror/ecb.git
+[submodule "jdee"]
+	path = jdee
+	url = https://github.com/emacsmirror/jdee.git
