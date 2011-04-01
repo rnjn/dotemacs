@@ -7,3 +7,6 @@
 [submodule "auto-complete"]
 	path = auto-complete
 	url = https://github.com/m2ym/auto-complete.git
+[submodule "clojure-mode"]
+	path = clojure-mode
+	url = https://github.com/jochu/clojure-mode.git
