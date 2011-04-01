@@ -27,11 +27,7 @@
 (add-to-list 'load-path "~/work/dotemacs/cedet")
 (load-file "~/work/dotemacs/cedet/common/cedet.el")
 (global-ede-mode 1)                      ; Enable the Project management system
-(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
-(global-srecode-minor-mode 1)            ; Enable template insertion menu
-
-;;;ecb
-(load-file "~/work/dotemacs/ecb_init.el")
+;;;(global-srecode-minor-mode 1)            ; Enable template insertion menu
 
 ;;;revert buffer
 (load-file "~/work/dotemacs/revert-buffer-init.el")
