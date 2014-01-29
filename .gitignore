@@ -1,7 +1,3 @@
-*.elc
-*.el~
-/.DS_Store
-*~
 # -*- mode: gitignore; -*-
 *~
 \#*\#
