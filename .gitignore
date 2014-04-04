@@ -25,3 +25,4 @@ tramp
 # misc
 *.dat
 /url/
+/.Rhistory
