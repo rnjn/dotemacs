@@ -93,6 +93,9 @@
 (load-theme 'solarized-dark t)
 (set-face-attribute 'default nil :height 135)
 
+;; delete for terminal
+(normal-erase-is-backspace-mode 1)
+
 ;;; auto complete
 (require 'auto-complete-config)
 (ac-config-default)
@@ -212,6 +215,7 @@
 (global-set-key (kbd "C-c p") 'simp-project-rgrep)
 (global-set-key (kbd "C-c b") 'simp-project-ibuffer-files-only)
 (global-set-key (kbd "C-c B") 'simp-project-ibuffer)
+
 
 ;;;(provide 'init)
 ;;; init ends here
