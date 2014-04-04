@@ -227,5 +227,12 @@
 ;;; cua
 (cua-mode 1)
 
+;;; hide menu bar for terminal
+(cond
+ ((eq window-system 'x)
+  (menu-bar-mode 1))
+ (t
+  (menu-bar-mode 0)))
+
 ;;;(provide 'init)
 ;;; init ends here
