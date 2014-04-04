@@ -88,7 +88,6 @@
     (message "package is %s" package)
     (package-install package)))
 
-
 ;; color and font
 (load-theme 'solarized-dark t)
 (set-face-attribute 'default nil :height 135)
@@ -216,6 +215,9 @@
 (global-set-key (kbd "C-c b") 'simp-project-ibuffer-files-only)
 (global-set-key (kbd "C-c B") 'simp-project-ibuffer)
 
+;;; magit
+(require 'magit)
+(global-set-key (kbd "C-c g") 'magit-status)
 
 ;;;(provide 'init)
 ;;; init ends here
