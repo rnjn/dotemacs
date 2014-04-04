@@ -46,6 +46,7 @@
 			   ess
 			   fill-column-indicator
 			   simp
+			   undo-tree
 			   ))
 
 
@@ -218,6 +219,13 @@
 ;;; magit
 (require 'magit)
 (global-set-key (kbd "C-c g") 'magit-status)
+
+;;; undo tree
+(require 'undo-tree)
+(global-undo-tree-mode 1)
+
+;;; cua
+(cua-mode 1)
 
 ;;;(provide 'init)
 ;;; init ends here
