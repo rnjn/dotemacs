@@ -45,8 +45,8 @@
 			   autopair
 			   ess
 			   fill-column-indicator
-			   simp
 			   undo-tree
+			   projectile
 			   ))
 
 
@@ -158,20 +158,6 @@
 
 ;;; python
 (elpy-enable)
-(elpy-use-ipython)
-
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
- "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
- "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
- "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-
 
 ;;; autopair
 (require 'autopair)
@@ -205,16 +191,6 @@
  '(flymake-errline (( ((class color)) (:underline "Red" :background nil)) ))
  '(flymake-warnline ((((class color)) (:underline "Orange")))))
 
-;;simp
-(require 'simp)
-(simp-project-define
- '(:has (.git)
-	:ignore (.git *.pyc)))
-(global-set-key (kbd "C-c f") 'simp-project-find-file)
-(global-set-key (kbd "C-c d") 'simp-project-root-dired)
-(global-set-key (kbd "C-c p") 'simp-project-rgrep)
-(global-set-key (kbd "C-c b") 'simp-project-ibuffer-files-only)
-(global-set-key (kbd "C-c B") 'simp-project-ibuffer)
 
 ;;; magit
 (require 'magit)
@@ -227,12 +203,31 @@
 ;;; cua
 (cua-mode 1)
 
-;;; hide menu bar for terminal
-(cond
- ((eq window-system 'x)
-  (menu-bar-mode 1))
- (t
-  (menu-bar-mode 0)))
+;;; hide menu bar for terminal,
+;;; make shift up work on the termninal
+;; (cond
+;;  ((eq window-system 'x)
+;;   (menu-bar-mode 1))
+;;  (t
+;;   (define-key input-decode-map "\e[1;2A" [S-up])
+;;   (menu-bar-mode 0)))
+
+;;; copy previous line - Ctrl-d
+(defun duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
+
+(global-set-key (kbd "C-d") 'duplicate-line)
+
+;;; projectile
+(add-hook 'elpy-mode-hook 'projectile-on)
+(setq projectile-enable-caching t)
+
 
 ;;;(provide 'init)
 ;;; init ends here
