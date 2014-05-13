@@ -47,6 +47,7 @@
 			   fill-column-indicator
 			   undo-tree
 			   projectile
+			   desktop-registry
 			   ))
 
 
@@ -99,6 +100,10 @@
 ;;; auto complete
 (require 'auto-complete-config)
 (ac-config-default)
+
+(defadvice ac-common-setup (after give-yasnippet-highest-priority activate)
+  (setq ac-sources (delq 'ac-source-yasnippet ac-sources))
+  (add-to-list 'ac-sources 'ac-source-yasnippet))
 
 ;;; hide tool bar
 (if window-system
@@ -227,6 +232,10 @@
 ;;; projectile
 (add-hook 'elpy-mode-hook 'projectile-on)
 (setq projectile-enable-caching t)
+
+;;; desktops
+(desktop-save-mode 1)
+(desktop-registry-auto-register)
 
 
 ;;;(provide 'init)
