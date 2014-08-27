@@ -48,6 +48,7 @@
 			   undo-tree
 			   projectile
 			   desktop-registry
+			   flymake-jslint
 			   ))
 
 
@@ -92,7 +93,7 @@
 
 ;; color and font
 (load-theme 'solarized-dark t)
-(set-face-attribute 'default nil :height 135)
+(set-face-attribute 'default nil :height 145)
 
 ;; delete for terminal
 (normal-erase-is-backspace-mode 1)
@@ -237,6 +238,30 @@
 (desktop-save-mode 1)
 (desktop-registry-auto-register)
 
+;;; close all buffers
+
+(defun close-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+;;; node 
+;;; find node
+(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+(setq exec-path
+      '(
+    "/usr/local/bin"
+    "/usr/bin"
+    ))
+
+;;;jshint
+(add-to-list 'load-path "/Users/r/.nvm/v0.10.28/lib/node_modules/jshint-mode")
+(require 'flymake-jshint)
+(add-hook 'javascript-mode-hook
+	  (lambda () (flymake-mode t)))
+
+;;; yaml mode
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;;;(provide 'init)
 ;;; init ends here
