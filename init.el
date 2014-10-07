@@ -23,7 +23,7 @@
 			   magit
 			   flycheck
 			   dired+
-			   project-explorer
+			   nav
 			   yaml-mode
 			   html-to-markdown
 			   markdown-mode+
@@ -43,12 +43,11 @@
 			   elpy
 			   flake8
 			   autopair
-			   ess
 			   fill-column-indicator
 			   undo-tree
-			   projectile
 			   desktop-registry
 			   flymake-jslint
+			   org
 			   ))
 
 
@@ -72,17 +71,15 @@
 (global-set-key (kbd "C-<f11>") 'toggle-fullscreen)
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")))
-;;			 ("melpa" . "http://melpa.milkbox.net/packages/")))
-
+			 ("org" . "http://orgmode.org/elpa/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; init elpa
+(setq package-enable-at-startup nil)
 (package-initialize)
 
 ;; refresh contents if not present
 (when (not package-archive-contents) (package-refresh-contents))
-
-(require 'assoc)
 
 ;;; install packages from the list if not installed already
 (dolist (package installed-packages)
@@ -92,8 +89,9 @@
     (package-install package)))
 
 ;; color and font
-(load-theme 'solarized-dark t)
+(load-theme 'solarized-dark t t)
 (set-face-attribute 'default nil :height 145)
+(enable-theme 'solarized-dark)
 
 ;; delete for terminal
 (normal-erase-is-backspace-mode 1)
@@ -140,17 +138,27 @@
 ;;; revert buffers when backing file changes
 (global-auto-revert-mode t)
 
+;;ls dired issue
+(set-variable 'ls-lisp-use-insert-directory-program nil)
+(require 'ls-lisp)
+
 ;;; project explorer
-(require 'project-explorer)
+(require 'nav)
+(nav-disable-overeager-window-splitting)
+;(require 'project-explorer)
 
-(defun open-project-explorer ()
-  "Custom project explorer configuration."
-  (interactive)
-  (set-variable 'pe/width 25)
-  (setq pe/omit-regex (concat pe/omit-regex "\\|\.pyc$"))
-  (project-explorer-open))
+;; (defun open-project-explorer ()
+;;   "Custom project explorer configuration."
+;;   (interactive)
+;;   (set-variable 'pe/width 25)
+;;   (set-variable 'pe/cache-enabled 't)
+;;   (set-variable 'pe/directory-tree-function 'pe/get-directory-tree-simple)
+;;   (set-variable 'pe/auto-refresh-cache 'f)
+;;   (setq pe/omit-regex (concat pe/omit-regex "\\|\.pyc$"))
+;;   (project-explorer-open))
 
-(global-set-key (kbd "C-M-l") 'open-project-explorer)
+(global-set-key (kbd "C-M-l") 'nav-toggle)
+
 
 ;;jedi
 (add-hook 'python-mode-hook 'jedi:setup)
@@ -170,7 +178,7 @@
 (autopair-global-mode)
 
 ;;; ess
-(require 'ess-site)
+;(require 'ess-site)
 
 ;;;fci
 (add-hook 'python-mode-hook 'fci-mode)
@@ -231,8 +239,8 @@
 (global-set-key (kbd "C-d") 'duplicate-line)
 
 ;;; projectile
-(add-hook 'elpy-mode-hook 'projectile-on)
-(setq projectile-enable-caching t)
+;(add-hook 'elpy-mode-hook 'projectile-on)
+;(setq projectile-enable-caching t)
 
 ;;; desktops
 (desktop-save-mode 1)
@@ -251,6 +259,7 @@
       '(
     "/usr/local/bin"
     "/usr/bin"
+    "/bin"
     ))
 
 ;;;jshint
@@ -263,5 +272,22 @@
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
+;;; org-files
+(setq org-agenda-files '("~/Desktop/todo"))
+(setq org-log-done 'time)
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+(global-visual-line-mode t)
 ;;;(provide 'init)
 ;;; init ends here
+
+
+
+
+
+
+
+
