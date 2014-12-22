@@ -48,6 +48,7 @@
 			   desktop-registry
 			   flymake-jslint
 			   org
+			   haskell-mode
 			   ))
 
 
@@ -72,6 +73,7 @@
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")
+;			 ("marmalade" . "http://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; init elpa
@@ -90,8 +92,9 @@
 
 ;; color and font
 (load-theme 'solarized-dark t t)
-(set-face-attribute 'default nil :height 145)
+(set-face-attribute 'default nil :height 145 :font "Monaco-15")
 (enable-theme 'solarized-dark)
+
 
 ;; delete for terminal
 (normal-erase-is-backspace-mode 1)
@@ -273,6 +276,9 @@
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;;; org-files
+(setq org-todo-keywords
+           '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
+
 (setq org-agenda-files '("~/Desktop/todo"))
 (setq org-log-done 'time)
 (global-set-key "\C-cl" 'org-store-link)
@@ -280,7 +286,16 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 
+
 (global-visual-line-mode t)
+
+;;; haskell
+(custom-set-variables
+ '(haskell-mode-hook '(turn-on-haskell-indentation)))
+
+;;; server
+(server-start)
+
 ;;;(provide 'init)
 ;;; init ends here
 
