@@ -14,9 +14,7 @@
 			   color-theme
 			   color-theme-solarized
 			   yasnippet
-			   auto-complete
 			   js2-mode
-			   ac-js2
 			   js2-refactor
 			   fullscreen-mode
 			   auto-save-buffers-enhanced
@@ -29,7 +27,6 @@
 			   markdown-mode+
 			   tidy
 			   slime
-			   ac-slime
 			   clojure-mode
 			   cider
 			   smartparens
@@ -49,7 +46,10 @@
 			   flymake-jslint
 			   org
 			   haskell-mode
-			   ))
+			   projectile
+			   flx-ido
+			   company-mode
+			   ))			   
 
 
 (defun reload-dot-emacs ()
@@ -74,7 +74,8 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")
 ;			 ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+			 ("melpa" . "http://stable.melpa.org/packages/")))
+
 
 ;; init elpa
 (setq package-enable-at-startup nil)
@@ -92,6 +93,7 @@
 
 ;; color and font
 (load-theme 'solarized-dark t t)
+(load-theme 'solarized-light t t)
 (set-face-attribute 'default nil :height 145 :font "Monaco-15")
 (enable-theme 'solarized-dark)
 
@@ -100,12 +102,14 @@
 (normal-erase-is-backspace-mode 1)
 
 ;;; auto complete
-(require 'auto-complete-config)
-(ac-config-default)
+;;(require 'auto-complete-config)
+;;(ac-config-default)
 
-(defadvice ac-common-setup (after give-yasnippet-highest-priority activate)
-  (setq ac-sources (delq 'ac-source-yasnippet ac-sources))
-  (add-to-list 'ac-sources 'ac-source-yasnippet))
+;;(defadvice ac-common-setup (after give-yasnippet-highest-priority activate)
+;;  
+;;  (setq ac-sources (delq 'ac-source-yasnippet ac-sources))
+;;  (add-to-list 'ac-sources 'ac-source-yasnippet))
+
 
 ;;; hide tool bar
 (if window-system
@@ -295,6 +299,16 @@
 
 ;;; server
 (server-start)
+
+;;; projectile
+(projectile-global-mode)
+(setq projectile-require-project-root nil)
+(setq projectile-switch-project-action 'projectile-find-dir)
+
+;;; company mode
+(add-hook 'after-init-hook 'global-company-mode)
+(global-set-key (kbd "s-/") 'company-complete)
+
 
 ;;;(provide 'init)
 ;;; init ends here
