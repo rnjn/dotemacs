@@ -28,3 +28,5 @@ tramp
 /.Rhistory
 *.eld
 *.cache
+recentf
+.python-environments

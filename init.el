@@ -49,7 +49,13 @@
 			   projectile
 			   flx-ido
 			   company-mode
-			   ))			   
+			   ggtags
+			   perspective
+			   persp-projectile
+			   helm-projectile
+			   zenburn-theme
+			   monokai-theme
+			   ))				
 
 
 (defun reload-dot-emacs ()
@@ -94,8 +100,13 @@
 ;; color and font
 (load-theme 'solarized-dark t t)
 (load-theme 'solarized-light t t)
-(set-face-attribute 'default nil :height 145 :font "Monaco-15")
-(enable-theme 'solarized-dark)
+(set-face-attribute 'default nil :height 140 :font "Monaco-14")
+;;(enable-theme 'solarized-dark)
+;; (require 'color-theme)
+;; (color-theme-initialize)
+;; (color-theme-clarity)
+;; (load-theme 'zenburn t)
+(load-theme 'monokai t)
 
 
 ;; delete for terminal
@@ -139,8 +150,6 @@
 ;;; dired+
 (require 'dired+)
 
-;;; helm
-(require 'helm-config)
 
 ;;; revert buffers when backing file changes
 (global-auto-revert-mode t)
@@ -216,10 +225,14 @@
 ;;; magit
 (require 'magit)
 (global-set-key (kbd "C-c g") 'magit-status)
+(setq magit-auto-revert-mode nil)
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;;; undo tree
 (require 'undo-tree)
 (global-undo-tree-mode 1)
+(defalias 'redo 'undo-tree-redo)
+(global-set-key (kbd "C-z") 'undo)
 
 ;;; cua
 (cua-mode 1)
@@ -245,13 +258,9 @@
 
 (global-set-key (kbd "C-d") 'duplicate-line)
 
-;;; projectile
-;(add-hook 'elpy-mode-hook 'projectile-on)
-;(setq projectile-enable-caching t)
-
 ;;; desktops
-(desktop-save-mode 1)
-(desktop-registry-auto-register)
+;;  (desktop-save-mode 1)
+;;  (desktop-registry-auto-register)
 
 ;;; close all buffers
 
@@ -302,13 +311,35 @@
 
 ;;; projectile
 (projectile-global-mode)
-(setq projectile-require-project-root nil)
-(setq projectile-switch-project-action 'projectile-find-dir)
+(setq projectile-switch-project-action 'helm-projectile)
+
+
+;;; helm
+(require 'helm-config)
+(helm-mode 1)
 
 ;;; company mode
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "s-/") 'company-complete)
 
+;;; recentf
+(recentf-mode t)
+
+;;; perspective
+(persp-mode)
+(require 'persp-projectile)
+
+;;; helm projectile
+(setq helm-projectile-fuzzy-match t)
+(setq helm-buffers-fuzzy-matching t)
+(setq helm-recentf-fuzzy-matching t)
+(setq helm-M-x-fuzzy-match t)
+;(helm-autoresize-mode 1)
+
+
+(require 'helm-projectile)
+(helm-projectile-on)
+(setq projectile-completion-system 'helm)
 
 ;;;(provide 'init)
 ;;; init ends here
