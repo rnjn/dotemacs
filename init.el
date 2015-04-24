@@ -55,6 +55,11 @@
 			   helm-projectile
 			   zenburn-theme
 			   monokai-theme
+			   popup
+			   scala-mode2
+			   sbt-mode
+			   scala-outline-popup
+			   ensime
 			   ))				
 
 
@@ -79,8 +84,8 @@
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")
-;			 ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://stable.melpa.org/packages/")))
+;;;			 ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.org/packages/")))
 
 
 ;; init elpa
@@ -100,10 +105,10 @@
 ;; color and font
 (load-theme 'solarized-dark t t)
 (load-theme 'solarized-light t t)
-(set-face-attribute 'default nil :height 140 :font "Monaco-14")
+(set-face-attribute 'default nil :height 145 :font "Monaco-15")
 ;;(enable-theme 'solarized-dark)
-;; (require 'color-theme)
-;; (color-theme-initialize)
+ (require 'color-theme)
+ (color-theme-initialize)
 ;; (color-theme-clarity)
 ;; (load-theme 'zenburn t)
 (load-theme 'monokai t)
@@ -299,7 +304,7 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 
-
+;;; visual line mode
 (global-visual-line-mode t)
 
 ;;; haskell
@@ -340,6 +345,43 @@
 (require 'helm-projectile)
 (helm-projectile-on)
 (setq projectile-completion-system 'helm)
+
+;;; custom 
+;;; erc
+(add-to-list 'load-path "~/.emacs.d/custom")
+(require 'erc-config)
+
+;;; scala
+(require 'scala-mode2)
+(require 'sbt-mode)
+(require 'popup)
+(require 'scala-outline-popup)
+(require 'ensime)
+
+
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+(add-hook 'scala-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "RET") 'newline-and-indent)
+	     (local-set-key (kbd "<backtab>") 'scala-indent:indent-with-reluctant-strategy)
+	     (setq compilation-skip-threshold 1)
+	     (local-set-key (kbd "M-RET") 'comint-accumulate)
+	     (local-set-key (kbd "M-.") 'sbt-find-definitions)
+	     (local-set-key (kbd "C-x '") 'sbt-run-previous-command)
+	     ))
+
+
+(define-key popup-isearch-keymap (kbd "s-e") 'popup-isearch-cancel)
+(setq scala-outline-popup-select 'closest)
+
+;; debug on error
+;; (setq debug-on-error t)
+
+
+;;; error navigation
+
+(global-set-key [f3] 'flycheck-previous-error)
+(global-set-key [f4] 'flycheck-next-error)
 
 ;;;(provide 'init)
 ;;; init ends here
