@@ -60,6 +60,8 @@
 			   sbt-mode
 			   scala-outline-popup
 			   ensime
+			   ag
+			   helm-ag
 			   ))				
 
 
@@ -84,7 +86,7 @@
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")
-;;;			 ("marmalade" . "http://marmalade-repo.org/packages/")
+;			 ("marmalade" . "http://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.org/packages/")))
 
 
@@ -322,6 +324,12 @@
 ;;; helm
 (require 'helm-config)
 (helm-mode 1)
+(helm-autoresize-mode 1)
+(setq helm-buffers-fuzzy-matching t)
+(setq helm-recentf-fuzzy-matching t)
+(setq helm-M-x-fuzzy-match t)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ;;; company mode
 (add-hook 'after-init-hook 'global-company-mode)
@@ -333,13 +341,10 @@
 ;;; perspective
 (persp-mode)
 (require 'persp-projectile)
+(define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project)
 
 ;;; helm projectile
 (setq helm-projectile-fuzzy-match t)
-(setq helm-buffers-fuzzy-matching t)
-(setq helm-recentf-fuzzy-matching t)
-(setq helm-M-x-fuzzy-match t)
-;(helm-autoresize-mode 1)
 
 
 (require 'helm-projectile)
@@ -377,6 +382,12 @@
 ;; debug on error
 ;; (setq debug-on-error t)
 
+;; silver searcher
+(require 'ag)
+(require 'helm-ag)
+(defun projectile-helm-ag ()
+  (interactive)
+  (helm-ag (projectile-project-root)))
 
 ;;; error navigation
 
