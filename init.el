@@ -43,7 +43,10 @@
 ;;list of packages to be installed by elpa
 
 ;;; Fonts and Themes
-(set-face-attribute 'default nil :height 145 :font "Monaco-14")
+(set-face-attribute 'default nil :font "Monaco-13")
+
+(when (member "Fira Code" (font-family-list))
+  (set-face-attribute 'default nil :font "Fira Code-13"))
 
 (use-package solarized-theme
   :ensure t
@@ -54,6 +57,13 @@
 
 (use-package rainbow-delimiters
   :ensure t)
+
+(use-package all-the-icons
+;; Uncomment this while setting up a new machine.
+;;  :config
+;;  (all-the-icons-install-fonts)
+  :ensure t)
+
 
 ;;; Bells and whistles
 (setq ring-bell-function 'ignore )
@@ -74,6 +84,9 @@
   (setq which-key-idle-delay 0.1))
 
 ;;; Helm
+
+(use-package helm-autoresize-mode
+  :ensure t)
 
 (use-package helm
  :diminish
@@ -97,7 +110,8 @@
 	   (setq helm-buffers-fuzzy-matching t)
 	   (setq helm-recentf-fuzzy-matching t)
 	   (setq helm-M-x-fuzzy-match t)
-	   (helm-autoresize-mode 1)
+;;; Can't find this package.
+;;;	   (helm-autoresize-mode 1)
 	  )
  :ensure t)
 
@@ -186,12 +200,12 @@
   (super-save-mode +1)
   :diminish)
 
-
-
-
 ;;; Org Mode
 
-;;; org-files
+;;; Org theme
+(use-package color-theme-buffer-local
+  :ensure t)
+
 (use-package org
   :ensure t
   :bind (("\C-ca" . org-agenda))
@@ -308,6 +322,9 @@
 ;;; recentf
 (recentf-mode t)
 
+;;; no need for scrollbars and window divider
+(scroll-bar-mode -1)
+(window-divider-mode -1)
 
 ;;; custom functions
 
@@ -341,9 +358,10 @@
 (global-set-key (kbd "C-d") 'duplicate-line)
 
 (defun close-all-buffers ()
-  "kill all buffers"
+  "Kill all buffers."
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
 
 (provide 'init)
+;;; init.el ends here
