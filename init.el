@@ -29,13 +29,18 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;;; Add /usr/local/bin to exec path
+;;; Add /usr/local/bin to exec path, load env vars
 (use-package exec-path-from-shell
   :ensure t
   :config (setq exec-path-from-shell-variables '("PATH"))
   :init
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
+
+
+(use-package load-env-vars
+  :ensure t
+  :init (load-env-vars "~/.profile"))
 
 (setq exec-path (append exec-path '("/usr/local/bin")))
 
@@ -48,12 +53,20 @@
 (when (member "Fira Code" (font-family-list))
   (set-face-attribute 'default nil :font "Fira Code-13"))
 
+;;; too lazy to setup a list of safe themes
+;;; this is dangerous, only controlled because I have a small
+;;; controlled list of themes - solarized-light and material dark
+(setq custom-safe-themes t)
+
 (use-package solarized-theme
   :ensure t
   :defer t)
 
 (use-package material-theme
   :ensure t)
+
+(load-theme 'material)
+
 
 (use-package rainbow-delimiters
   :ensure t)
@@ -85,9 +98,6 @@
 
 ;;; Helm
 
-(use-package helm-autoresize-mode
-  :ensure t)
-
 (use-package helm
  :diminish
  :init
@@ -109,10 +119,7 @@
  :config (progn
 	   (setq helm-buffers-fuzzy-matching t)
 	   (setq helm-recentf-fuzzy-matching t)
-	   (setq helm-M-x-fuzzy-match t)
-;;; Can't find this package.
-;;;	   (helm-autoresize-mode 1)
-	  )
+	   (setq helm-M-x-fuzzy-match t))
  :ensure t)
 
 ;; need for ripgrep speed
@@ -143,8 +150,6 @@
 (use-package page-break-lines
   :ensure t)
 
-(use-package helm-projectile
-  :ensure t)
 
 (use-package projectile
   :ensure t
@@ -157,6 +162,9 @@
   :bind (:map projectile-mode-map
 	      ("s-p" . projectile-command-map)
 	      ("C-c p" . projectile-command-map)))
+
+(use-package helm-projectile
+  :ensure t)
 
 ;;; Layout
 (global-set-key (kbd "C-<f11>") 'toggle-fullscreen)
@@ -174,6 +182,11 @@
   :bind ("M-o" . ace-window)
   :config (ace-window-display-mode 1)
   :ensure t)
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+
 
 ;;; hide tool bar
 (if window-system
@@ -201,10 +214,6 @@
   :diminish)
 
 ;;; Org Mode
-
-;;; Org theme
-(use-package color-theme-buffer-local
-  :ensure t)
 
 (use-package org
   :ensure t
