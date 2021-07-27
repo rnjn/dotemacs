@@ -255,6 +255,30 @@
   :ensure t
   :config (setq org-bullets-bullet-list '("◉" "○" "⌗" "⌘" )))
 
+
+;; Org journal
+(use-package org-journal
+  :ensure t
+  :bind(("\C-cjs" . org-journal-search))
+  :init
+  (setq org-journal-prefix-key "C-c j")
+  :config
+  (setq org-journal-file-header "#+TITLE: %Y-%m-%d")
+  (setq org-journal-dir "~/Desktop/diary")
+  (setq org-journal-file-format "%Y-%m-%d.org")
+  )
+
+(dolist (face '((org-level-1 . 1.2)
+                (org-level-2 . 1.05)
+                (org-level-3 . 1.0)
+                (org-level-4 . 1.0)
+                (org-level-5 . 1.0)
+                (org-level-6 . 1.0)
+                (org-level-7 . 1.0)
+                (org-level-8 . 1.0)))
+  (set-face-attribute (car face) nil  :weight 'regular :height (cdr face) :box nil)
+  )
+
 ;;; Programming
 
 (use-package flycheck
