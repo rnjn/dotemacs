@@ -336,7 +336,11 @@
 (global-set-key [f4] 'flymake-goto-next-error)
 
 (custom-set-faces
- '(flymake-errline (( ((class color)) (:underline "Red" :background nil)) ))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flymake-errline ((((class color)) (:underline "Red" :background nil))))
  '(flymake-warnline ((((class color)) (:underline "Orange")))))
 
 
@@ -398,3 +402,10 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(yasnippet yaml-mode which-key use-package super-save solarized-theme smartparens rg rainbow-delimiters page-break-lines org-journal org-bullets nav material-theme magit load-env-vars helm-rg helm-projectile flycheck expand-region exec-path-from-shell doom-modeline diminish dashboard company ace-window)))
