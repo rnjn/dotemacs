@@ -47,11 +47,13 @@
 
 ;;list of packages to be installed by elpa
 
+(use-package nerd-icons
+  :ensure t)
 ;;; Fonts and Themes
 (set-face-attribute 'default nil :font "Monaco-13")
 
 (when (member "Fira Code" (font-family-list))
-  (set-face-attribute 'default nil :font "Fira Code-13"))
+  (set-face-attribute 'default nil :font "Fira Code Retina-16"))
 
 ;;; too lazy to setup a list of safe themes
 ;;; this is dangerous, only controlled because I have a small
@@ -187,6 +189,13 @@
   :ensure t
   :hook (after-init . doom-modeline-mode))
 
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+	doom-themes-enable-italic t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
 
 ;;; hide tool bar
 (if window-system
@@ -408,4 +417,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(yasnippet yaml-mode which-key use-package super-save solarized-theme smartparens rg rainbow-delimiters page-break-lines org-journal org-bullets nav material-theme magit load-env-vars helm-rg helm-projectile flycheck expand-region exec-path-from-shell doom-modeline diminish dashboard company ace-window)))
+   '(doom-themes nerd-icons yasnippet yaml-mode which-key use-package super-save solarized-theme smartparens rg rainbow-delimiters page-break-lines org-journal org-bullets nav material-theme magit load-env-vars helm-rg helm-projectile flycheck expand-region exec-path-from-shell doom-modeline diminish dashboard company ace-window)))
