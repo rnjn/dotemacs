@@ -192,19 +192,27 @@
 (use-package doom-themes
   :ensure t
   :config
-  (setq doom-themes-enable-bold t
-	doom-themes-enable-italic t)
+  (setq doom-themes-enable-bold 'nil
+	doom-themes-enable-italic 'nil)
+  (load-theme 'doom-tokyo-night t)
+
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
+
+(use-package markdown-mode
+  :config
+  (custom-set-variables
+   '(markdown-command "/opt/homebrew/bin/pandoc"))
+  :ensure t)
+
 
 ;;; hide tool bar
 (if window-system
     (tool-bar-mode -1)
 )
 ;;; show line numbers
-(global-linum-mode 0)
-
-(global-set-key (kbd "s-M-l") 'linum-mode)
+(global-display-line-numbers-mode 0)
+(global-set-key (kbd "s-M-l") 'nlinum-mode)
 
 
 ;;; Finger memory
@@ -377,7 +385,7 @@
 (defun reload-dot-emacs ()
   "Reload init file."
   (interactive)
-  (load-file "~/.emacs"))
+  (load-file "~/.emacs.d/init.el"))
 
 (defun open-dot-emacs ()
   "Open this init file."
@@ -417,4 +425,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(doom-themes nerd-icons yasnippet yaml-mode which-key use-package super-save solarized-theme smartparens rg rainbow-delimiters page-break-lines org-journal org-bullets nav material-theme magit load-env-vars helm-rg helm-projectile flycheck expand-region exec-path-from-shell doom-modeline diminish dashboard company ace-window)))
+   '(markdown-mode doom-themes nerd-icons yasnippet yaml-mode which-key use-package super-save solarized-theme smartparens rg rainbow-delimiters page-break-lines org-journal org-bullets nav material-theme magit load-env-vars helm-rg helm-projectile flycheck expand-region exec-path-from-shell doom-modeline diminish dashboard company ace-window)))
