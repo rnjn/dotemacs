@@ -29,6 +29,19 @@
   (package-install 'use-package))
 (require 'use-package)
 
+;;; install quelpa so we can install packages directly from source
+
+(use-package quelpa
+  :ensure t)
+
+(quelpa
+ '(quelpa-use-package
+   :fetcher git
+   :url "https://github.com/quelpa/quelpa-use-package.git"))
+
+(require 'quelpa-use-package)
+(setq-default quelpa-build-tar-executable "/opt/homebrew/bin/gtar")
+
 ;;; Add /usr/local/bin to exec path, load env vars
 (use-package exec-path-from-shell
   :ensure t
@@ -72,6 +85,8 @@
 
 (use-package rainbow-delimiters
   :ensure t)
+
+
 
 (use-package all-the-icons
 ;; Uncomment this while setting up a new machine.
@@ -173,11 +188,25 @@
 ;; fullscreen post init
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
-(use-package nav
-  :commands nav-toggle nav-disable-overeager-window-splitting
+;; (use-package nav
+;;   :commands nav-toggle nav-disable-overeager-window-splitting
+;;   :init
+;;   (bind-key "C-M-l" 'nav-toggle)
+;;   :ensure t)
+
+;;; using neotree instead of nav
+(use-package neotree
   :init
-  (bind-key "C-M-l" 'nav-toggle)
+  (bind-key "C-M-l" 'neotree-toggle)
   :ensure t)
+
+;; 
+;; (use-package nano-sidebar
+;;   :ensure t
+;;   :quelpa (nano-sidebar
+;;            :fetcher github
+;;            :repo "rougier/nano-sidebar"))
+
 
 (use-package ace-window
   :delight
@@ -424,5 +453,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(markdown-command "/opt/homebrew/bin/pandoc")
  '(package-selected-packages
-   '(markdown-mode doom-themes nerd-icons yasnippet yaml-mode which-key use-package super-save solarized-theme smartparens rg rainbow-delimiters page-break-lines org-journal org-bullets nav material-theme magit load-env-vars helm-rg helm-projectile flycheck expand-region exec-path-from-shell doom-modeline diminish dashboard company ace-window)))
+   '(neotree neo-tree dir-treeview nano-sidebar quelpa-use-package quelpa markdown-mode doom-themes nerd-icons yasnippet yaml-mode which-key use-package super-save solarized-theme smartparens rg rainbow-delimiters page-break-lines org-journal org-bullets nav material-theme magit load-env-vars helm-rg helm-projectile flycheck expand-region exec-path-from-shell doom-modeline diminish dashboard company ace-window)))
