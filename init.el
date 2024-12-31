@@ -63,10 +63,10 @@
 (use-package nerd-icons
   :ensure t)
 ;;; Fonts and Themes
-(set-face-attribute 'default nil :font "Monaco-13")
+(set-face-attribute 'default nil :font "Monaco-16")
 
 (when (member "Fira Code" (font-family-list))
-  (set-face-attribute 'default nil :font "Fira Code Retina-16"))
+  (set-face-attribute 'default nil :font "Fira Code Retina-18"))
 
 ;;; too lazy to setup a list of safe themes
 ;;; this is dangerous, only controlled because I have a small
@@ -199,6 +199,8 @@
   :init
   (bind-key "C-M-l" 'neotree-toggle)
   (bind-key "<f8>" 'neotree-refresh)
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   :ensure t)
 
 ;; 
