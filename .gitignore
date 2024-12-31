@@ -30,3 +30,5 @@ tramp
 *.cache
 recentf
 .python-environments
+/quelpa/
+/transient/

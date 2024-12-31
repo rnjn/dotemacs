@@ -198,6 +198,7 @@
 (use-package neotree
   :init
   (bind-key "C-M-l" 'neotree-toggle)
+  (bind-key "<f8>" 'neotree-refresh)
   :ensure t)
 
 ;; 
